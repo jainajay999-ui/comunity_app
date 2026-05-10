@@ -253,6 +253,12 @@
     let masterFamily = []; 
     let currentPhoto = "";
 
+    // CLEAN DATE HELPER
+    function cleanDate(dateStr) {
+        if (!dateStr) return "";
+        return dateStr.toString().split('T')[0];
+    }
+
     function navigateTo(id) {
         document.querySelectorAll('.app-screen').forEach(s => {
             s.classList.remove('screen-active');
@@ -328,7 +334,7 @@
         masterFamily.forEach(m => {
             list.innerHTML += `<div class="member-card" style="flex-direction:row; align-items:center;">
                 <div class="photo-circle">${m.photo ? `<img src="${m.photo}">` : `<i class="fas fa-user"></i>`}</div>
-                <div style="margin-left:15px;"><b style="color:#fff">${m.name}</b><br><small>${m.role} | DOB: ${m.dob} | ${m.education}</small></div>
+                <div style="margin-left:15px;"><b style="color:#fff">${m.name}</b><br><small>${m.role} | DOB: ${cleanDate(m.dob)} | ${m.education}</small></div>
             </div>`;
         });
     }
@@ -359,7 +365,7 @@
                         <div class="photo-circle">${head[6] ? `<img src="${head[6]}">` : `<i class="fas fa-user"></i>`}</div>
                         <div style="flex:1; margin-left:15px;">
                             <div style="color:white; font-size:0.9rem"><b>${head[0]}</b></div>
-                            <div style="font-size:0.7rem; color:gold">${head[4]} | DOB: ${head[1]} | ${head[3]}</div>
+                            <div style="font-size:0.7rem; color:gold">${head[4]} | DOB: ${cleanDate(head[1])} | ${head[3]}</div>
                         </div>
                         <i class="fas fa-chevron-down" style="font-size:0.8rem; opacity:0.5"></i>
                     </div>
@@ -368,13 +374,13 @@
                             <div style="display:flex; align-items:center; margin-bottom:10px;">
                                 <div class="photo-circle" style="width:40px; height:40px;">${m[6] ? `<img src="${m[6]}">` : `<i class="fas fa-user"></i>`}</div>
                                 <div style="margin-left:12px; font-size:0.75rem;">
-                                    <b>${m[0]}</b><br><small>DOB: ${m[1]} | ${m[3]}</small>
+                                    <b>${m[0]}</b><br><small>DOB: ${cleanDate(m[1])} | ${m[3]}</small>
                                 </div>
                             </div>`).join('')}
                     </div>`;
                 list.appendChild(card);
             }
-        } catch (e) { list.innerHTML = '<div style="text-align:center; padding:20px;">Connection issue. Try tapping Members again.</div>'; }
+        } catch (e) { list.innerHTML = '<div style="text-align:center; padding:20px;">Connection issue.</div>'; }
     }
 </script>
 </body>
