@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="icon" href="ljs_logo.png" type="image/png" sizes="144x144">
-    <link rel="apple-touch-icon" href="ljs_logo.png">
+    <link rel="icon" href="ljs_icon.png" type="image/png">
+    <link rel="apple-touch-icon" href="ljs_icon.png">
     <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="Loyana Samaj">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -48,7 +49,6 @@
         .app-screen { display: none; flex-direction: column; height: 100%; width: 100%; }
         .screen-active { display: flex; }
 
-        /* --- GOLD EMBOSSED TEXT WITH SHEEN --- */
         .embossed {
             background: linear-gradient(to right, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
             -webkit-background-clip: text;
@@ -56,8 +56,6 @@
             color: transparent;
             text-transform: uppercase;
             font-weight: 900;
-            position: relative;
-            display: inline-block;
             filter: drop-shadow(1px 1px 0px var(--emboss-highlight)) 
                     drop-shadow(-1px -1px 1px var(--emboss-shadow));
             background-size: 200% auto;
@@ -69,7 +67,6 @@
             100% { background-position: 200% center; }
         }
 
-        /* --- LOGIN CENTERED --- */
         #screen-login {
             justify-content: center;
             align-items: center;
@@ -102,12 +99,11 @@
             box-shadow: 0 4px 0 #8d702e;
         }
 
-        /* --- GRID --- */
         .grid-container {
             padding: 20px;
             display: grid;
             grid-template-columns: repeat(2, auto);
-            gap: 20px;
+            gap: 15px;
             justify-content: center;
         }
 
@@ -121,11 +117,9 @@
             justify-content: center;
             align-items: center;
             cursor: pointer;
-            box-shadow: inset 4px 4px 6px var(--emboss-highlight), 
-                        inset -1px -1px 2px var(--emboss-shadow);
+            box-shadow: inset 2px 2px 4px var(--emboss-highlight);
         }
 
-        /* --- EDITABLE CARDS --- */
         .member-card {
             background: var(--card-maroon-mid);
             padding: 12px;
@@ -134,16 +128,6 @@
             display: flex;
             align-items: center;
             border: 1px solid rgba(240, 201, 119, 0.2);
-        }
-
-        .editable-input {
-            background: transparent;
-            border: none;
-            color: white;
-            font-weight: bold;
-            width: 100%;
-            outline: none;
-            font-family: sans-serif;
         }
 
         .photo-circle {
@@ -168,8 +152,6 @@
             overflow: hidden;
             background: #2a0000;
         }
-        .slider-container { display: flex; height: 100%; transition: transform 0.4s ease; }
-        .slide { min-width: 100%; height: 100%; }
 
         .nav-bar { background: #4a0000; display: flex; justify-content: space-around; padding: 12px 0; border-top: 1px solid rgba(240, 201, 119, 0.3); }
         .nav-item { color: #8d702e; font-size: 0.7rem; text-align: center; cursor: pointer; }
@@ -193,18 +175,16 @@
         </div>
 
         <div class="grid-container">
-            <div class="square-card" onclick="navigateTo('screen-setup')"><i class="fas fa-users-cog" style="font-size: 2rem;"></i><span class="embossed" style="font-size: 0.7rem;">My Family</span></div>
-            <div class="square-card"><i class="fas fa-address-book" style="font-size: 2rem;"></i><span class="embossed" style="font-size: 0.7rem;">Directory</span></div>
-            <div class="square-card"><i class="fas fa-calendar-alt" style="font-size: 2rem;"></i><span class="embossed" style="font-size: 0.7rem;">Events</span></div>
-            <div class="square-card"><i class="fas fa-newspaper" style="font-size: 2rem;"></i><span class="embossed" style="font-size: 0.7rem;">News</span></div>
-            <div class="square-card"><i class="fas fa-images" style="font-size: 2rem;"></i><span class="embossed" style="font-size: 0.7rem;">Gallery</span></div>
-            <div class="square-card" onclick="navigateTo('screen-directory')"><i class="fas fa-users" style="font-size: 2rem;"></i><span class="embossed" style="font-size: 0.7rem;">Members</span></div>
+            <div class="square-card" onclick="navigateTo('screen-setup')"><i class="fas fa-users-cog" style="font-size: 1.8rem;"></i><span class="embossed" style="font-size: 0.6rem; margin-top:5px;">My Family</span></div>
+            <div class="square-card" onclick="navigateTo('screen-directory')"><i class="fas fa-address-book" style="font-size: 1.8rem;"></i><span class="embossed" style="font-size: 0.6rem; margin-top:5px;">Directory</span></div>
+            <div class="square-card"><i class="fas fa-calendar-alt" style="font-size: 1.8rem;"></i><span class="embossed" style="font-size: 0.6rem; margin-top:5px;">Events</span></div>
+            <div class="square-card"><i class="fas fa-newspaper" style="font-size: 1.8rem;"></i><span class="embossed" style="font-size: 0.6rem; margin-top:5px;">News</span></div>
+            <div class="square-card"><i class="fas fa-images" style="font-size: 1.8rem;"></i><span class="embossed" style="font-size: 0.6rem; margin-top:5px;">Gallery</span></div>
+            <div class="square-card" onclick="navigateTo('screen-directory')"><i class="fas fa-users" style="font-size: 1.8rem;"></i><span class="embossed" style="font-size: 0.6rem; margin-top:5px;">Members</span></div>
         </div>
 
         <div class="slider-wrapper">
-            <div class="slider-container" id="slider">
-                <div class="slide" style="background:#333; display:flex; align-items:center; justify-content:center;"><i class="fas fa-image" style="font-size:3rem; opacity:0.2"></i></div>
-            </div>
+             <div style="display:flex; height:100%; align-items:center; justify-content:center; opacity:0.2"><i class="fas fa-images fa-3x"></i></div>
         </div>
 
         <div class="nav-bar">
@@ -216,94 +196,141 @@
     </div>
 
     <div id="screen-setup" class="app-screen">
-        <div style="padding: 20px; border-bottom: 1px solid gold;">
+        <div style="padding: 20px; border-bottom: 1px solid gold; display: flex; align-items: center;">
             <i class="fas fa-arrow-left" onclick="navigateTo('screen-home')" style="cursor:pointer"></i>
             <span class="embossed" style="margin-left: 20px; font-size: 1rem;">Family Setup</span>
         </div>
         <div id="setup-list" style="flex:1; overflow-y:auto; padding:20px;"></div>
-        <div style="padding: 15px; background: rgba(0,0,0,0.3);">
+        <div style="padding: 15px; background: rgba(0,0,0,0.4);">
+            <div id="role-hint" style="font-size: 0.7rem; color: gold; margin-bottom: 5px;">ADDING: HEAD OF FAMILY</div>
+            <div style="display:flex; align-items:center; margin-bottom:10px;">
+                <div class="photo-circle" onclick="document.getElementById('m-photo').click()">
+                    <img id="photo-preview" src="" style="display:none">
+                    <i id="photo-icon" class="fas fa-camera"></i>
+                </div>
+                <input type="file" id="m-photo" style="display:none" accept="image/*" onchange="previewFile(this)">
+                <span style="font-size:0.7rem; margin-left:10px;">Tap icon to add photo</span>
+            </div>
             <input type="text" id="m-name" class="login-input" placeholder="Full Name">
-            <input type="date" id="m-dob" class="login-input">
-            <button class="btn-gold" style="width: 100%;" onclick="addFamilyMember()">Add Member</button>
+            <input type="text" id="m-phone" class="login-input" placeholder="Mobile Number">
+            <input type="text" id="m-edu" class="login-input" placeholder="Education">
+            <input type="text" id="m-place" class="login-input" placeholder="Place (e.g. Borivali)">
+            <button class="btn-gold" id="save-btn" style="width: 100%;" onclick="uploadMember()">Save Member</button>
         </div>
     </div>
 
     <div id="screen-directory" class="app-screen">
         <div style="padding: 20px; border-bottom: 1px solid gold;">
             <i class="fas fa-arrow-left" onclick="navigateTo('screen-home')" style="cursor:pointer"></i>
-            <span class="embossed" style="margin-left: 20px; font-size: 1rem;">Members</span>
+            <span class="embossed" style="margin-left: 20px; font-size: 1rem;">Community Directory</span>
         </div>
-        <div id="heads-list" style="flex:1; overflow-y:auto; padding:20px;"></div>
+        <div id="global-list" style="flex:1; overflow-y:auto; padding:20px;"></div>
     </div>
 
 </div>
 
 <script>
+    const DATABASE_URL = "https://script.google.com/macros/s/AKfycbxKlBK9u2Ne3MQ4Nnylb_149Fgfvf4EYkfDP1qGZffy2x61fQErlLd49xxvk__OyXJb/exec"; 
+
     let masterFamily = []; 
+    let currentPhoto = "";
 
     function navigateTo(id) {
         document.querySelectorAll('.app-screen').forEach(s => s.classList.remove('screen-active'));
         document.getElementById(id).classList.add('screen-active');
-        if(id === 'screen-directory') renderHeads();
+        if(id === 'screen-directory') fetchCommunity();
     }
 
-    function addFamilyMember() {
+    function previewFile(input) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            currentPhoto = e.target.result;
+            document.getElementById('photo-preview').src = e.target.result;
+            document.getElementById('photo-preview').style.display = 'block';
+            document.getElementById('photo-icon').style.display = 'none';
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+
+    async function uploadMember() {
+        const btn = document.getElementById('save-btn');
         const name = document.getElementById('m-name').value;
-        const dob = document.getElementById('m-dob').value;
-        if(!name) return;
-        const role = masterFamily.length === 0 ? "Head of Family" : `Member ${masterFamily.length}`;
-        masterFamily.push({ name, dob, role, photo: null });
-        renderSetup();
-        document.getElementById('m-name').value = '';
-        document.getElementById('m-dob').value = '';
+        const phone = document.getElementById('m-phone').value;
+        const edu = document.getElementById('m-edu').value;
+        const placeInput = document.getElementById('m-place');
+
+        if(!name) return alert("Name is required");
+        btn.innerText = "Saving...";
+        btn.disabled = true;
+
+        const isHead = masterFamily.length === 0;
+        const payload = {
+            name: name,
+            phone: phone,
+            education: edu,
+            place: isHead ? placeInput.value : (masterFamily[0] ? masterFamily[0].place : ""),
+            role: isHead ? "Head" : "Member",
+            photo: currentPhoto
+        };
+
+        try {
+            await fetch(DATABASE_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                body: JSON.stringify(payload)
+            });
+
+            masterFamily.push(payload);
+            renderSetup();
+            
+            // Clear Form
+            document.getElementById('m-name').value = '';
+            document.getElementById('m-phone').value = '';
+            document.getElementById('m-edu').value = '';
+            document.getElementById('photo-preview').style.display = 'none';
+            document.getElementById('photo-icon').style.display = 'block';
+            currentPhoto = "";
+
+            if(masterFamily.length >= 1) {
+                placeInput.style.display = 'none';
+                document.getElementById('role-hint').innerText = "ADDING: FAMILY MEMBER";
+            }
+        } catch (e) { alert("Check Script URL"); }
+        btn.innerText = "Save Member";
+        btn.disabled = false;
     }
 
     function renderSetup() {
         const list = document.getElementById('setup-list');
         list.innerHTML = '';
-        masterFamily.forEach((m, idx) => {
-            const card = document.createElement('div');
-            card.className = 'member-card';
-            card.innerHTML = `
-                <div class="photo-circle" onclick="this.nextElementSibling.click()">
-                    ${m.photo ? `<img src="${m.photo}">` : `<i class="fas fa-camera"></i>`}
-                </div>
-                <input type="file" style="display:none" onchange="uploadPhoto(this, ${idx})">
-                <div style="margin-left:15px; flex-grow:1">
-                    <input class="editable-input" value="${m.name}" onchange="masterFamily[${idx}].name=this.value">
-                    <div style="color:#f0c977; font-size:0.7rem">${m.role}</div>
-                    <input type="date" class="editable-input" style="font-size:0.8rem; color:#f0c977" value="${m.dob}" onchange="masterFamily[${idx}].dob=this.value">
+        masterFamily.forEach((m) => {
+            list.innerHTML += `
+                <div class="member-card">
+                    <div class="photo-circle">${m.photo ? `<img src="${m.photo}">` : `<i class="fas fa-user"></i>`}</div>
+                    <div style="margin-left:15px;"><b style="color:#fff">${m.name}</b><br><small>${m.role}</small></div>
                 </div>`;
-            list.appendChild(card);
         });
     }
 
-    function uploadPhoto(input, idx) {
-        if (input.files && input.files[0]) {
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                masterFamily[idx].photo = e.target.result;
-                renderSetup();
-            };
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-
-    function renderHeads() {
-        const list = document.getElementById('heads-list');
-        list.innerHTML = '';
-        if(masterFamily.length > 0) {
-            const head = masterFamily[0];
-            const card = document.createElement('div');
-            card.className = 'member-card';
-            card.innerHTML = `
-                <div class="photo-circle">${head.photo ? `<img src="${head.photo}">` : `<i class="fas fa-user"></i>`}</div>
-                <div style="margin-left:15px;">
-                    <div style="color:white; font-weight:bold">${head.name}</div>
-                    <div style="color:#f0c977; font-size:0.8rem">Head of Family</div>
-                </div>`;
-            list.appendChild(card);
-        }
+    async function fetchCommunity() {
+        const list = document.getElementById('global-list');
+        list.innerHTML = '<div style="text-align:center; opacity:0.5">Syncing data...</div>';
+        try {
+            const resp = await fetch(DATABASE_URL);
+            const data = await resp.json();
+            list.innerHTML = '';
+            data.forEach(row => {
+                list.innerHTML += `
+                    <div class="member-card">
+                        <div class="photo-circle">${row[5] ? `<img src="${row[5]}">` : `<i class="fas fa-user"></i>`}</div>
+                        <div style="flex:1">
+                            <div style="color:white; font-size:0.9rem"><b>${row[0]}</b></div>
+                            <div style="font-size:0.7rem; color:gold">${row[3]} | ${row[1]}</div>
+                            <div style="font-size:0.6rem; opacity:0.8">${row[4]} | ${row[2]}</div>
+                        </div>
+                    </div>`;
+            });
+        } catch (e) { list.innerHTML = '<div style="text-align:center">Tap Directory again to refresh.</div>'; }
     }
 </script>
 </body>
