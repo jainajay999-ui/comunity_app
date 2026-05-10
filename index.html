@@ -46,20 +46,17 @@
             position: relative;
         }
 
-        /* FIXED: Screen display logic */
         .app-screen { 
             display: none; 
             flex-direction: column; 
             height: 100%; 
             width: 100%; 
-            position: absolute; /* Ensures screens don't stack visually */
+            position: absolute;
             top: 0;
             left: 0;
         }
         
-        .screen-active { 
-            display: flex; 
-        }
+        .screen-active { display: flex; }
 
         .embossed {
             background: linear-gradient(to right, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
@@ -178,7 +175,7 @@
             margin-top: auto;
         }
         .nav-item { color: #8d702e; font-size: 0.7rem; text-align: center; cursor: pointer; }
-        .family-sub-list { margin-top: 10px; padding-left: 15px; border-left: 1px solid gold; display: none; }
+        .family-sub-list { margin-top: 12px; padding-left: 15px; border-left: 1px solid gold; display: none; }
     </style>
 </head>
 <body>
@@ -257,15 +254,14 @@
     let currentPhoto = "";
 
     function navigateTo(id) {
-        // FIXED: Clear all active classes first
         document.querySelectorAll('.app-screen').forEach(s => {
             s.classList.remove('screen-active');
-            s.style.display = 'none'; // Forced secondary hide
+            s.style.display = 'none';
         });
         
         const target = document.getElementById(id);
         target.classList.add('screen-active');
-        target.style.display = 'flex'; // Forced flex display
+        target.style.display = 'flex';
         
         if(id === 'screen-directory') fetchCommunity();
     }
@@ -332,14 +328,14 @@
         masterFamily.forEach(m => {
             list.innerHTML += `<div class="member-card" style="flex-direction:row; align-items:center;">
                 <div class="photo-circle">${m.photo ? `<img src="${m.photo}">` : `<i class="fas fa-user"></i>`}</div>
-                <div style="margin-left:15px;"><b style="color:#fff">${m.name}</b><br><small>${m.role} | ${m.dob}</small></div>
+                <div style="margin-left:15px;"><b style="color:#fff">${m.name}</b><br><small>${m.role} | DOB: ${m.dob} | ${m.education}</small></div>
             </div>`;
         });
     }
 
     async function fetchCommunity() {
         const list = document.getElementById('heads-list');
-        list.innerHTML = '<div style="text-align:center; opacity:0.5">Loading community...</div>';
+        list.innerHTML = '<div style="text-align:center; opacity:0.5; padding:20px;">Refreshing Directory...</div>';
         try {
             const resp = await fetch(DATABASE_URL);
             const data = await resp.json();
@@ -363,20 +359,22 @@
                         <div class="photo-circle">${head[6] ? `<img src="${head[6]}">` : `<i class="fas fa-user"></i>`}</div>
                         <div style="flex:1; margin-left:15px;">
                             <div style="color:white; font-size:0.9rem"><b>${head[0]}</b></div>
-                            <div style="font-size:0.7rem; color:gold">${head[4]} | Head</div>
+                            <div style="font-size:0.7rem; color:gold">${head[4]} | DOB: ${head[1]} | ${head[3]}</div>
                         </div>
-                        <i class="fas fa-chevron-down"></i>
+                        <i class="fas fa-chevron-down" style="font-size:0.8rem; opacity:0.5"></i>
                     </div>
                     <div class="family-sub-list">
                         ${members.filter(m => m !== head).map(m => `
-                            <div style="display:flex; align-items:center; margin-bottom:8px;">
-                                <div class="photo-circle" style="width:35px; height:35px;">${m[6] ? `<img src="${m[6]}">` : `<i class="fas fa-user"></i>`}</div>
-                                <div style="margin-left:10px; font-size:0.75rem;"><b>${m[0]}</b><br><small>${m[5]}</small></div>
+                            <div style="display:flex; align-items:center; margin-bottom:10px;">
+                                <div class="photo-circle" style="width:40px; height:40px;">${m[6] ? `<img src="${m[6]}">` : `<i class="fas fa-user"></i>`}</div>
+                                <div style="margin-left:12px; font-size:0.75rem;">
+                                    <b>${m[0]}</b><br><small>DOB: ${m[1]} | ${m[3]}</small>
+                                </div>
                             </div>`).join('')}
                     </div>`;
                 list.appendChild(card);
             }
-        } catch (e) { list.innerHTML = '<div style="text-align:center">Error loading.</div>'; }
+        } catch (e) { list.innerHTML = '<div style="text-align:center; padding:20px;">Connection issue. Try tapping Members again.</div>'; }
     }
 </script>
 </body>
